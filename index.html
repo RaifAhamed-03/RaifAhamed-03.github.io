@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raif Ahamed | Portfolio</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ============ CSS VARIABLES ============ */
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #11161e;
+            --bg-card: #161c26;
+            --bg-card-hover: #1c2430;
+            --border: #1e293b;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.15);
+            --green: #3fb950;
+            --green-glow: rgba(63, 185, 80, 0.15);
+            --orange: #d2991d;
+            --orange-glow: rgba(210, 153, 29, 0.15);
+            --purple: #a371f7;
+            --purple-glow: rgba(163, 113, 247, 0.15);
+            --red: #f85149;
+            --cyan: #39d2c0;
+            --gradient-1: linear-gradient(135deg, #58a6ff, #3fb950);
+            --gradient-2: linear-gradient(135deg, #a371f7, #58a6ff);
+            --gradient-3: linear-gradient(135deg, #d2991d, #f85149);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 20px var(--accent-glow);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============ RESET & BASE ============ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============ NAVIGATION ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            transition: var(--transition);
+        }
+
+        .nav.scrolled {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo .bracket { color: var(--accent); }
+        .nav-logo .slash { color: var(--green); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 8px 20px !important;
+            border-radius: var(--radius-sm);
+            font-weight: 600 !important;
+        }
+        .nav-cta:hover {
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-1px);
+        }
+        .nav-cta::after { display: none !important; }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(88, 166, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(88, 166, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .hero-bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.12;
+        }
+        .hero-bg-orb.orb-1 {
+            width: 500px; height: 500px;
+            background: var(--accent);
+            top: -200px; right: -150px;
+        }
+        .hero-bg-orb.orb-2 {
+            width: 400px; height: 400px;
+            background: var(--purple);
+            bottom: -150px; left: -100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* Hero Profile */
+        .hero-profile {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            padding: 5px;
+            margin: 0 auto 1.5rem;
+            animation: fadeInDown 0.6s ease;
+            position: relative;
+            background: var(--bg-card);
+            box-shadow: 0 0 30px var(--accent-glow);
+            transition: var(--transition);
+        }
+
+        .hero-profile:hover {
+            box-shadow: 0 0 45px rgba(88, 166, 255, 0.35);
+            transform: scale(1.03);
+        }
+
+        .hero-profile-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-profile-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-profile-placeholder {
+            font-size: 4rem;
+            color: var(--accent);
+        }
+
+        .hero-profile::before {
+            content: '';
+            position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--accent);
+            animation: profileRingSpin 4s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes profileRingSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: var(--bg-card);
+        }
+
+                .btn-resume {
+            background: transparent;
+            color: var(--accent);
+            border: 1.5px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-resume::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .btn-resume:hover {
+            color: #fff;
+        }
+
+        .btn-resume:hover::before {
+            width: 100%;
+        }
+
+        .btn-resume i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-resume:hover i {
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 3rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .hero-stat { text-align: center; }
+        .hero-stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ SECTIONS ============ */
+        .section { padding: 5rem 2rem; }
+        .section-alt { background: var(--bg-secondary); }
+        .section-container { max-width: 1100px; margin: 0 auto; }
+
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .section-line {
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-1);
+            border-radius: 3px;
+            margin: 0 auto;
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .about-highlight {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .about-highlight i { color: var(--green); font-size: 0.75rem; }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+        .about-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cert-list { list-style: none; }
+        .cert-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cert-list li:last-child { border-bottom: none; }
+        .cert-list .cert-badge {
+            width: 32px; height: 32px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .cert-badge.isc2 { background: var(--green-glow); color: var(--green); }
+        .cert-badge.google { background: var(--accent-glow); color: var(--accent); }
+
+        /* ============ SKILLS SECTION ============ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .skill-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .skill-card-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+        .skill-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        .skill-tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .skill-card:nth-child(1) .skill-card-icon { color: var(--accent); }
+        .skill-card:nth-child(2) .skill-card-icon { color: var(--green); }
+        .skill-card:nth-child(3) .skill-card-icon { color: var(--orange); }
+        .skill-card:nth-child(4) .skill-card-icon { color: var(--purple); }
+
+        /* ============ PROJECTS SECTION ============ */
+        .projects-grid { display: grid; gap: 1.5rem; }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(88, 166, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            padding: 1.5rem 1.75rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .project-icon {
+            width: 44px; height: 44px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .project-icon.soc { background: var(--green-glow); color: var(--green); }
+        .project-icon.ai { background: var(--purple-glow); color: var(--purple); }
+        .project-icon.splunk { background: var(--accent-glow); color: var(--accent); }
+        .project-icon.forensics { background: var(--orange-glow); color: var(--orange); }
+
+        .project-title-area h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+        .project-tech {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .project-links { display: flex; gap: 0.5rem; }
+        .project-link {
+            width: 36px; height: 36px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: transparent;
+        }
+        .project-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .project-link.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .project-body { padding: 1.5rem 1.75rem; }
+        .project-metrics {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .project-metric {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .project-metric i { font-size: 0.7rem; }
+        .project-metric.highlight { color: var(--green); }
+        .project-metric.highlight i { color: var(--green); }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+        .project-desc ul { list-style: none; padding: 0; }
+        .project-desc ul li {
+            padding-left: 1.25rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        .project-desc ul li::before {
+            content: '\203A';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .project-desc ul li strong { color: var(--text-primary); }
+
+        /* ============ EVIDENCE GALLERY ============ */
+        .evidence-section {
+            display: none;
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+            padding: 1.25rem 1.75rem;
+        }
+        .evidence-section.show { display: block; }
+
+        .evidence-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .evidence-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .evidence-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        .evidence-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .evidence-item-caption {
+            padding: 0.6rem 0.75rem;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* ============ LIGHTBOX ============ */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-overlay.show {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+        }
+
+        .lightbox-content img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius-md);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            transition: var(--transition);
+        }
+        .lightbox-close:hover { color: var(--accent); }
+
+        .lightbox-caption {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+        .lightbox-nav.prev { left: -60px; }
+        .lightbox-nav.next { right: -60px; }
+
+        /* ============ SIMULATIONS SECTION ============ */
+        .sim-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+        .sim-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+        .sim-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.05);
+        }
+        .sim-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        .sim-card-icon {
+            width: 42px; height: 42px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+        .sim-card:nth-child(1) .sim-card-icon { background: var(--orange-glow); color: var(--orange); }
+        .sim-card:nth-child(2) .sim-card-icon { background: rgba(248, 81, 73, 0.15); color: var(--red); }
+        .sim-card:nth-child(3) .sim-card-icon { background: var(--purple-glow); color: var(--purple); }
+        .sim-card:nth-child(4) .sim-card-icon { background: var(--green-glow); color: var(--green); }
+        .sim-card:nth-child(5) .sim-card-icon { background: var(--accent-glow); color: var(--accent); }
+        .sim-card:nth-child(6) .sim-card-icon { background: rgba(57, 210, 192, 0.15); color: var(--cyan); }
+
+        .sim-card h4 { font-size: 0.9rem; font-weight: 600; }
+        .sim-card .sim-company { font-size: 0.75rem; color: var(--text-muted); }
+        .sim-card .sim-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
+        .sim-card .sim-desc ul { list-style: none; padding: 0; margin-top: 0.5rem; }
+        .sim-card .sim-desc ul li {
+            padding-left: 1rem;
+            position: relative;
+            margin-bottom: 0.35rem;
+            font-size: 0.78rem;
+        }
+        .sim-card .sim-desc ul li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* ============ CHALLENGES SECTION ============ */
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .challenge-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            transition: var(--transition);
+        }
+        .challenge-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .challenge-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .challenge-card-icon {
+            width: 48px; height: 48px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .challenge-card:nth-child(1) .challenge-card-icon { background: var(--green-glow); color: var(--green); }
+        .challenge-card:nth-child(2) .challenge-card-icon { background: var(--accent-glow); color: var(--accent); }
+
+        .challenge-card h4 { font-size: 1rem; font-weight: 600; }
+        .challenge-card .challenge-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+        .challenge-card .challenge-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+        .challenge-card .challenge-desc ul { list-style: none; padding: 0; margin-top: 0.5rem; }
+        .challenge-card .challenge-desc ul li {
+            padding-left: 1.25rem;
+            position: relative;
+            margin-bottom: 0.4rem;
+        }
+        .challenge-card .challenge-desc ul li::before {
+            content: '\203A';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ============ CONTACT SECTION ============ */
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-card h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .contact-card p { color: var(--text-secondary); margin-bottom: 2rem; }
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .contact-link:hover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .contact-link.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .contact-link.primary:hover { box-shadow: var(--shadow-glow); }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+                /* ============ FLOATING RESUME BUTTON ============ */
+        .floating-resume {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            width: 56px;
+            height: 56px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 20px rgba(88, 166, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: floatPulse 2.5s ease-in-out infinite;
+        }
+
+        .floating-resume:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 8px 30px rgba(88, 166, 255, 0.6);
+        }
+
+        .floating-tooltip {
+            position: absolute;
+            right: 68px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.78rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .floating-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-left: 6px solid var(--bg-card);
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+        }
+
+        .floating-resume:hover .floating-tooltip {
+            opacity: 1;
+            transform: translateX(-4px);
+        }
+
+        @keyframes floatPulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(88, 166, 255, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 35px rgba(88, 166, 255, 0.7);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .floating-resume {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+            .floating-tooltip {
+                display: none;
+            }
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .sim-grid { grid-template-columns: repeat(2, 1fr); }
+            .challenge-grid { grid-template-columns: 1fr; }
+            .evidence-grid { grid-template-columns: repeat(2, 1fr); }
+            .lightbox-nav.prev { left: 10px; }
+            .lightbox-nav.next { right: 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 64px; left: 0; right: 0;
+                background: var(--bg-secondary);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1.25rem;
+            }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+
+            .hero-title { font-size: 2.25rem; }
+            .hero-stats { gap: 1.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+            .sim-grid { grid-template-columns: 1fr; }
+            .challenge-grid { grid-template-columns: 1fr; }
+            .evidence-grid { grid-template-columns: 1fr 1fr; }
+            .project-header { flex-direction: column; }
+            .project-links { align-self: flex-end; }
+            .section { padding: 3rem 1.25rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.75rem; }
+            .hero-buttons { flex-direction: column; }
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .evidence-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="bracket">&lt;</span>RAIF AHAMED<span class="slash">/</span><span class="bracket">&gt;</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#simulations">Simulations</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-bg-grid"></div>
+            <div class="hero-bg-orb orb-1"></div>
+            <div class="hero-bg-orb orb-2"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-profile">
+                <div class="hero-profile-inner">
+                    <img src="profile.jpg" alt="Raif Ahamed">
+                </div>
+            </div>
+
+            <div class="hero-badge">
+                <span class="dot"></span> Open to SOC/Cybersecurity Analyst Opportunities
+            </div>
+            <h1 class="hero-title">
+                Security Operations<br>
+                <span class="gradient-text">Engineered from Scratch</span>
+            </h1>
+            <p class="hero-subtitle">
+                I build, detect, and respond. From custom SIEM labs to AI-powered intrusion detection —
+                I bring hands-on SOC expertise to protect what matters.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fa-solid fa-shield-halved"></i> View My Work
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fa-solid fa-envelope"></i> Get In Touch
+                </a>
+                <a href="Resume.pdf" class="btn btn-resume" download>
+                    <i class="fa-solid fa-file-arrow-down"></i> Download Resume
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">98.5%</div>
+                    <div class="hero-stat-label">Detection Accuracy</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">10K+</div>
+                    <div class="hero-stat-label">Events Analyzed</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">15+</div>
+                    <div class="hero-stat-label">Custom Rules</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">&lt;25s</div>
+                    <div class="hero-stat-label">Response Time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT SECTION ============ -->
+    <section class="section section-alt" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">About Me</div>
+                <h2 class="section-title">Security-Driven Mindset</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        I'm a <strong>SOC Analyst</strong> with a deep passion for threat detection, incident response,
+                        and security engineering. I don't just use security tools — I build and configure them from scratch
+                        to understand how attacks work and how to stop them.
+                    </p>
+                    <p>
+                        My journey includes deploying a complete SOC lab with <strong>Wazuh, Suricata, and Zeek</strong>,
+                        engineering an AI-powered NIDS with <strong>98.5% detection accuracy</strong>, completing multiple
+                        hands-on cybersecurity challenges, and performing real-world forensic investigations.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="about-highlight"><i class="fa-solid fa-check"></i> ISC2 Certified in Cybersecurity</div>
+                        <div class="about-highlight"><i class="fa-solid fa-check"></i> Google Cybersecurity Certified</div>
+                        <div class="about-highlight"><i class="fa-solid fa-check"></i> 6+ Forage Job Simulations</div>
+                        <div class="about-highlight"><i class="fa-solid fa-check"></i> B.E. Computer Science (2026)</div>
+                        <div class="about-highlight"><i class="fa-solid fa-check"></i> HaxCamp Linux Log Analysis</div>
+                        <div class="about-highlight"><i class="fa-solid fa-check"></i> HaxCamp Wireshark Challenge</div>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <h3><i class="fa-solid fa-certificate"></i> Certifications</h3>
+                    <ul class="cert-list">
+                        <li>
+                            <span class="cert-badge isc2"><i class="fa-solid fa-shield"></i></span>
+                            <div>
+                                <strong>ISC2 Certified in Cybersecurity (CC)</strong>
+                                <br><small style="color:var(--text-muted)">2024</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="cert-badge google"><i class="fa-brands fa-google"></i></span>
+                            <div>
+                                <strong>Google Professional Cybersecurity</strong>
+                                <br><small style="color:var(--text-muted)">Coursera, 2024</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SKILLS SECTION ============ -->
+    <section class="section" id="skills">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Technical Arsenal</div>
+                <h2 class="section-title">Skills & Tools</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-server"></i></div>
+                    <h4>SIEM & Detection</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Wazuh</span>
+                        <span class="skill-tag">Splunk</span>
+                        <span class="skill-tag">DQL</span>
+                        <span class="skill-tag">MITRE ATT&CK</span>
+                        <span class="skill-tag">FIM</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h4>Network Security</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Suricata IDS</span>
+                        <span class="skill-tag">Zeek NSM</span>
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">pfSense</span>
+                        <span class="skill-tag">Scapy</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h4>IR & Forensics</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Active Response</span>
+                        <span class="skill-tag">Alert Triage</span>
+                        <span class="skill-tag">HxD</span>
+                        <span class="skill-tag">File Carving</span>
+                        <span class="skill-tag">Log Analysis</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-card-icon"><i class="fa-solid fa-code"></i></div>
+                    <h4>Languages & Tools</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL/SPL</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">Kali Linux</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PROJECTS SECTION ============ -->
+    <section class="section section-alt" id="projects">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Featured Work</div>
+                <h2 class="section-title">Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+
+                <!-- Project 1: SOC Home Lab -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div style="display:flex;align-items:center;gap:1rem;">
+                            <div class="project-icon soc"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="project-title-area">
+                                <h3>Personal SOC Home Lab</h3>
+                                <span class="project-tech">Wazuh · Suricata · Zeek · pfSense · Kali Linux</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/RaifAhamed-03/SOC-Home-Lab" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <button class="project-link evidence-toggle" data-project="soc-lab" title="View Evidence"><i class="fa-solid fa-images"></i></button>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-metrics">
+                            <span class="project-metric highlight"><i class="fa-solid fa-check-circle"></i> 15+ Custom Rules</span>
+                            <span class="project-metric highlight"><i class="fa-solid fa-clock"></i> &lt;25s Response</span>
+                            <span class="project-metric"><i class="fa-solid fa-database"></i> 10K+ Events</span>
+                        </div>
+                        <div class="project-desc">
+                            <ul>
+                                <li>Deployed <strong>Wazuh SIEM</strong> with custom rules mapped to MITRE ATT&CK</li>
+                                <li>Integrated <strong>Suricata IDS (25K+ signatures)</strong> and <strong>Zeek NSM</strong></li>
+                                <li>Built <strong>VirusTotal API integration</strong> with automated malware quarantine (&lt;25s)</li>
+                                <li>Configured FIM, Slack alerts, and custom SOC dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Evidence Gallery -->
+                    <div class="evidence-section" id="evidence-soc-lab">
+                        <div class="evidence-label"><i class="fa-solid fa-camera"></i> Evidence Screenshots</div>
+                        <div class="evidence-grid">
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/wazuh-dashboard.png', 'Wazuh Dashboard — All Events from Ubuntu Client')">
+                                <img src="assets/soc-lab/wazuh-dashboard.png" alt="Wazuh Dashboard" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Wazuh Dashboard — All Events</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/failed-logins.png', 'Failed SSH Login Detection')">
+                                <img src="assets/soc-lab/failed-logins.png" alt="Failed Logins" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Failed SSH Login Detection</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/user-management.png', 'User Account Management Monitoring')">
+                                <img src="assets/soc-lab/user-management.png" alt="User Management" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">User Account Management</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/suricata-alerts.png', 'Suricata IDS Alerts in Wazuh')">
+                                <img src="assets/soc-lab/suricata-alerts.png" alt="Suricata Alerts" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Suricata IDS Alerts</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/virustotal-integration.png', 'VirusTotal Detection — 60+ Engines')">
+                                <img src="assets/soc-lab/virustotal-integration.png" alt="VirusTotal" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">VirusTotal Integration</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/active-response.png', 'Active Response Script Execution')">
+                                <img src="assets/soc-lab/active-response.png" alt="Active Response" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Active Response Log</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/slack-alert.png', 'Real-Time Slack Alert')">
+                                <img src="assets/soc-lab/slack-alert.png" alt="Slack Alert" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Slack Alert Notification</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/soc-lab/custom-dashboard.png', 'Custom SOC Dashboard')">
+                                <img src="assets/soc-lab/custom-dashboard.png" alt="Custom Dashboard" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Custom SOC Dashboard</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: CYBERDO -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div style="display:flex;align-items:center;gap:1rem;">
+                            <div class="project-icon ai"><i class="fa-solid fa-brain"></i></div>
+                            <div class="project-title-area">
+                                <h3>CYBERDO — AI-Powered NIDS</h3>
+                                <span class="project-tech">Python · TensorFlow · XGBoost · Flask · Redis</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/RaifAhamed-03/CYBERDO-IDS" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <button class="project-link evidence-toggle" data-project="cyberdo" title="View Evidence"><i class="fa-solid fa-images"></i></button>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-metrics">
+                            <span class="project-metric highlight"><i class="fa-solid fa-bullseye"></i> 98.5% Accuracy</span>
+                            <span class="project-metric highlight"><i class="fa-solid fa-filter"></i> 94% Alert Reduction</span>
+                            <span class="project-metric"><i class="fa-solid fa-check-circle"></i> 100% Test Pass</span>
+                        </div>
+                        <div class="project-desc">
+                            <ul>
+                                <li>Ensemble ML engine (RF + XGBoost + Autoencoder) on <strong>50M+ samples</strong></li>
+                                <li><strong>78-feature</strong> real-time extraction across 7 behavioral dimensions</li>
+                                <li>4-stage alert suppression: <strong>94% alert reduction</strong> (10,000 → 600)</li>
+                                <li>Federated Learning with Differential Privacy for GDPR compliance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Evidence Gallery -->
+                    <div class="evidence-section" id="evidence-cyberdo">
+                        <div class="evidence-label"><i class="fa-solid fa-camera"></i> Evidence Screenshots</div>
+                        <div class="evidence-grid">
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/dashboard.png', 'Cyberdo Main Dashboard')">
+                                <img src="assets/cyberdo/dashboard.png" alt="Cyberdo Dashboard" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Real-Time SOC Dashboard</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/alerts.png', 'Threat Alerts with MITRE Mapping')">
+                                <img src="assets/cyberdo/alerts.png" alt="Alerts" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Threat Alerts Panel</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/network-analysis.png', 'Model Performance Metrics')">
+                                <img src="assets/cyberdo/network-analysis.png" alt="AI Insights" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Network Analysis</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/feedback-loop.png', 'Model Performance Metrics')">
+                                <img src="assets/cyberdo/feedback-loop.png" alt="AI Insights" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Feedback Loop</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/ai-insights.png', 'Model Performance Metrics')">
+                                <img src="assets/cyberdo/ai-insights.png" alt="AI Insights" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">AI Model Insights</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/federated-learning.png', 'Federated Learning Dashboard')">
+                                <img src="assets/cyberdo/federated-learning.png" alt="Federated Learning" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Federated Learning Status</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/cyberdo/reports.png', 'Federated Learning Dashboard')">
+                                <img src="assets/cyberdo/reports.png" alt="Federated Learning" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Reports</div>
+                            </div>                                                    
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Splunk Fraud Detection -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div style="display:flex;align-items:center;gap:1rem;">
+                            <div class="project-icon splunk"><i class="fa-solid fa-chart-pie"></i></div>
+                            <div class="project-title-area">
+                                <h3>Financial Fraud Detection Dashboard</h3>
+                                <span class="project-tech">Splunk Enterprise · SPL · Data Visualization</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/RaifAhamed-03/Commonwealth-Bank-Job-Simulation-Financial-Fraud-Detection-Splunk-SIEM-Analytics-Dashboard" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <button class="project-link evidence-toggle" data-project="splunk" title="View Evidence"><i class="fa-solid fa-images"></i></button>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-metrics">
+                            <span class="project-metric"><i class="fa-solid fa-database"></i> 60-Day Dataset</span>
+                            <span class="project-metric"><i class="fa-solid fa-code"></i> 5 SPL Queries</span>
+                            <span class="project-metric"><i class="fa-solid fa-chart-bar"></i> Executive Dashboard</span>
+                        </div>
+                        <div class="project-desc">
+                            <ul>
+                                <li>Ingested <strong>60-day transactional dataset</strong> into Splunk Enterprise</li>
+                                <li>Engineered <strong>5 custom SPL queries</strong> for fraud investigation</li>
+                                <li>Identified high-risk categories, demographics, and merchant anomalies</li>
+                                <li>Designed executive dashboard with bar charts and heatmaps</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Evidence Gallery -->
+                    <div class="evidence-section" id="evidence-splunk">
+                        <div class="evidence-label"><i class="fa-solid fa-camera"></i> Evidence Screenshots</div>
+                        <div class="evidence-grid">
+                            <div class="evidence-item" onclick="openLightbox('assets/splunk/dashboard-preview.png', 'Splunk Fraud Detection Dashboard')">
+                                <img src="assets/splunk/dashboard-preview.png" alt="Splunk Dashboard" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Fraud Detection Dashboard</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: ANZ Network Forensics -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div style="display:flex;align-items:center;gap:1rem;">
+                            <div class="project-icon forensics"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                            <div class="project-title-area">
+                                <h3>ANZ Network Forensics Investigation</h3>
+                                <span class="project-tech">Wireshark · HxD Hex Editor · PCAP Analysis</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/RaifAhamed-03/ANZ-Cyber-Security-Job-Simulation-Network-Forensics-Artifact-Recovery" class="project-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <button class="project-link evidence-toggle" data-project="forensics" title="View Evidence"><i class="fa-solid fa-images"></i></button>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-metrics">
+                            <span class="project-metric"><i class="fa-solid fa-envelope"></i> 7 Phishing Emails</span>
+                            <span class="project-metric"><i class="fa-solid fa-file-lines"></i> 15MB PCAP</span>
+                            <span class="project-metric highlight"><i class="fa-solid fa-images"></i> 8 Artifacts Recovered</span>
+                        </div>
+                        <div class="project-desc">
+                            <ul>
+                                <li>Two-phase investigation: Phishing Intelligence + Deep Packet Inspection</li>
+                                <li>Recovered <strong>PII (debit card)</strong> from unencrypted HTTP streams</li>
+                                <li>Used <strong>HxD</strong> for Base64 reconstruction and steganography detection</li>
+                                <li>Bypassed PDF encryption; mapped findings to MITRE ATT&CK</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Evidence Gallery -->
+                    <div class="evidence-section" id="evidence-forensics">
+                        <div class="evidence-label"><i class="fa-solid fa-camera"></i> Evidence Screenshots</div>
+                        <div class="evidence-grid">
+                            <div class="evidence-item" onclick="openLightbox('assets/forensics/bank-card.jpg', 'Recovered PII — Debit Card')">
+                                <img src="assets/forensics/bank-card.jpg" alt="Bank Card" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Recovered PII — Debit Card</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/forensics/broken.png', 'Base64 Reconstructed Image')">
+                                <img src="assets/forensics/broken.png" alt="Broken PNG" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Base64 Reconstructed Image</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/forensics/hidden.jpg', 'Steganography — Hidden Payload')">
+                                <img src="assets/forensics/hidden.jpg" alt="Hidden Payload" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Steganography Discovery</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/forensics/evil-page.png', 'Recovered Malicious Document')">
+                                <img src="assets/forensics/evil-page.png" alt="Evil Page" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Recovered Malicious Document</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/forensics/banking-guide.png', 'Decrypted Banking Guide')">
+                                <img src="assets/forensics/banking-guide-page1.png" alt="Banking Guide" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Decrypted Banking Guide Page 1</div>
+                            </div>
+                            <div class="evidence-item" onclick="openLightbox('assets/forensics/banking-guide.png', 'Decrypted Banking Guide')">
+                                <img src="assets/forensics/banking-guide-page2.png" alt="Banking Guide" onerror="this.parentElement.style.display='none'">
+                                <div class="evidence-item-caption">Decrypted Banking Guide Page 2</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SIMULATIONS SECTION ============ -->
+    <section class="section" id="simulations">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Virtual Experience</div>
+                <h2 class="section-title">Forage Job Simulations</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="sim-grid">
+                <div class="sim-card">
+                    <div class="sim-card-header">
+                        <div class="sim-card-icon"><i class="fa-solid fa-building-columns"></i></div>
+                        <div><h4>Fraud Detection & Response</h4><span class="sim-company">Commonwealth Bank</span></div>
+                    </div>
+                    <div class="sim-desc">
+                        <p>Analyzed 60-day transactional data using Splunk Enterprise to identify fraudulent patterns.</p>
+                        <ul>
+                            <li>Built SPL queries for fraud investigation</li>
+                            <li>Designed executive dashboard</li>
+                            <li>Identified high-risk categories & merchants</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sim-card">
+                    <div class="sim-card-header">
+                        <div class="sim-card-icon"><i class="fa-solid fa-file-shield"></i></div>
+                        <div><h4>Threat Analysis & Decryption</h4><span class="sim-company">AIG Shields Up</span></div>
+                    </div>
+                    <div class="sim-desc">
+                        <p>Analyzed CISA-reported vulnerabilities and performed ethical decryption during ransomware simulation.</p>
+                        <ul>
+                            <li>Conducted threat analysis using CISA advisories</li>
+                            <li>Used Python for brute-force decryption</li>
+                            <li>Delivered security recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sim-card">
+                    <div class="sim-card-header">
+                        <div class="sim-card-icon"><i class="fa-solid fa-key"></i></div>
+                        <div><h4>Identity & Access Management</h4><span class="sim-company">Tata Consultancy Services</span></div>
+                    </div>
+                    <div class="sim-desc">
+                        <p>Gained expertise in IAM principles and delivered technical documentation for security consulting.</p>
+                        <ul>
+                            <li>Applied IAM best practices and standards</li>
+                            <li>Created technical security documentation</li>
+                            <li>Assessed access control requirements</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sim-card">
+                    <div class="sim-card-header">
+                        <div class="sim-card-icon"><i class="fa-solid fa-fish"></i></div>
+                        <div><h4>Phishing Threat Analysis</h4><span class="sim-company">Mastercard</span></div>
+                    </div>
+                    <div class="sim-desc">
+                        <p>Simulated Security Analyst duties identifying phishing threats and recommending targeted training.</p>
+                        <ul>
+                            <li>Analyzed phishing email indicators</li>
+                            <li>Identified domain spoofing techniques</li>
+                            <li>Recommended risk-based security training</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sim-card">
+                    <div class="sim-card-header">
+                        <div class="sim-card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <div><h4>Network Forensics</h4><span class="sim-company">ANZ Australia</span></div>
+                    </div>
+                    <div class="sim-desc">
+                        <p>Investigated phishing emails and analyzed PCAP files using Wireshark and HxD for artifact recovery.</p>
+                        <ul>
+                            <li>Performed deep packet inspection</li>
+                            <li>Recovered hidden files via hex carving</li>
+                            <li>Mapped findings to MITRE ATT&CK</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sim-card">
+                    <div class="sim-card-header">
+                        <div class="sim-card-icon"><i class="fa-solid fa-building"></i></div>
+                        <div><h4>Technology Consulting</h4><span class="sim-company">Deloitte</span></div>
+                    </div>
+                    <div class="sim-desc">
+                        <p>Completed technology consulting simulation analyzing business requirements and recommending solutions.</p>
+                        <ul>
+                            <li>Evaluated technology requirements</li>
+                            <li>Developed consulting recommendations</li>
+                            <li>Presented findings to stakeholders</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CHALLENGES SECTION ============ -->
+    <section class="section section-alt" id="challenges">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Hands-On Challenges</div>
+                <h2 class="section-title">HaxCamp Cybersecurity Challenges</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="challenge-grid">
+                <div class="challenge-card">
+                    <div class="challenge-card-header">
+                        <div class="challenge-card-icon"><i class="fa-brands fa-linux"></i></div>
+                        <div>
+                            <h4>3-Day Linux Log Analysis Challenge</h4>
+                            <span class="challenge-subtitle">HaxCamp · Command Line Forensics</span>
+                        </div>
+                    </div>
+                    <div class="challenge-desc">
+                        <p>Intensive 3-day challenge analyzing Linux system logs to detect security incidents and trace system compromises.</p>
+                        <ul>
+                            <li>Analyzed auth.log, syslog, and audit logs for anomalies</li>
+                            <li>Used grep, awk, sed, and journalctl for log parsing</li>
+                            <li>Identified brute force attacks via SSH log correlation</li>
+                            <li>Detected suspicious cron jobs and unauthorized user creation</li>
+                            <li>Traced attacker timelines across multiple log sources</li>
+                            <li>Documented findings with IOC extraction</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-card-header">
+                        <div class="challenge-card-icon"><i class="fa-solid fa-network-wired"></i></div>
+                        <div>
+                            <h4>3-Day Wireshark Challenge</h4>
+                            <span class="challenge-subtitle">HaxCamp · Network Traffic Forensics</span>
+                        </div>
+                    </div>
+                    <div class="challenge-desc">
+                        <p>Intensive 3-day challenge analyzing network packet captures to detect malicious activity and reconstruct attack timelines.</p>
+                        <ul>
+                            <li>Applied display filters for DNS anomalies and TCP SYN floods</li>
+                            <li>Followed TCP streams to extract transferred files</li>
+                            <li>Analyzed protocol hierarchies to baseline normal traffic</li>
+                            <li>Detected C2 beaconing via periodic DNS query analysis</li>
+                            <li>Identified malware via User-Agent and certificate inspection</li>
+                            <li>Generated PCAP-based IOC report with source/destination mapping</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT SECTION ============ -->
+    <section class="section" id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-card">
+                <h3>Ready to Secure Your Organization?</h3>
+                <p>I'm actively seeking SOC/Cybersecurity Analyst opportunities to apply my detection engineering and incident response skills.</p>
+                <div class="contact-links">
+                    <a href="mailto:raifahamed.tdi@gmail.com" class="contact-link primary">
+                        <i class="fa-solid fa-envelope"></i> raifahamed.tdi@gmail.com
+                    </a>
+                    <a href="tel:+918610716323" class="contact-link">
+                        <i class="fa-solid fa-phone"></i> +91 8610716323
+                    </a>
+                    <a href="https://linkedin.com/in/raif-ahamed-a-029256257" class="contact-link">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/RaifAhamed-03" class="contact-link">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <p> Raif Ahamed — Built for the SOC. <span style="color:var(--green);">#OpenToWork</span></p>
+    </footer>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+            <button class="lightbox-nav prev" onclick="navigateLightbox(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <img src="" alt="" id="lightboxImage">
+            <button class="lightbox-nav next" onclick="navigateLightbox(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.querySelector('i').classList.add('fa-bars');
+                mobileToggle.querySelector('i').classList.remove('fa-xmark');
+            });
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.getBoundingClientRect().top + window.pageYOffset - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Evidence Toggle
+        document.querySelectorAll('.evidence-toggle').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const projectId = this.getAttribute('data-project');
+                const evidenceSection = document.getElementById('evidence-' + projectId);
+                
+                if (evidenceSection) {
+                    evidenceSection.classList.toggle('show');
+                    this.classList.toggle('active');
+                }
+            });
+        });
+
+        // Lightbox
+        let lightboxImages = [];
+        let currentImageIndex = 0;
+
+        function openLightbox(src, caption) {
+            const overlay = document.getElementById('lightboxOverlay');
+            const image = document.getElementById('lightboxImage');
+            const captionEl = document.getElementById('lightboxCaption');
+
+            // Find all visible evidence images
+            lightboxImages = [];
+            document.querySelectorAll('.evidence-item img').forEach(img => {
+                if (img.offsetParent !== null) {
+                    lightboxImages.push({ src: img.src, caption: img.nextElementSibling?.textContent || '' });
+                }
+            });
+
+            currentImageIndex = lightboxImages.findIndex(item => item.src === src);
+            if (currentImageIndex === -1) currentImageIndex = 0;
+
+            image.src = src;
+            captionEl.textContent = caption;
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = lightboxImages.length - 1;
+            if (currentImageIndex >= lightboxImages.length) currentImageIndex = 0;
+
+            const item = lightboxImages[currentImageIndex];
+            document.getElementById('lightboxImage').src = item.src;
+            document.getElementById('lightboxCaption').textContent = item.caption;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const overlay = document.getElementById('lightboxOverlay');
+            if (!overlay.classList.contains('show')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // Click outside to close
+        document.getElementById('lightboxOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.project-card, .skill-card, .sim-card, .challenge-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+    </script>
+
+    <!-- ============ FLOATING RESUME BUTTON ============ -->
+    <a href="Resume.pdf" class="floating-resume" download title="Download Resume">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span class="floating-tooltip">Download Resume</span>
+    </a>
+</body>
+</html>
